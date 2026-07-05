@@ -3,7 +3,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      ./hosts/ad-astra/hardware-configuration.nix
     ];
 
   boot.loader.grub.enable = true;
