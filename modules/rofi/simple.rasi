@@ -1,0 +1,163 @@
+@theme "~/.config/rofi/rofi-colors.css"
+
+configuration {
+    show-icons: false;
+    display-drun: "";
+    icon-theme: "Papirus";
+}
+
+/*****----- Main Window -----*****/
+window {
+    transparency:                "real";
+    location:                    center;
+    anchor:                      center;
+    border:                      3px;
+    border-color:                @primary;
+    fullscreen:                  false;
+    width:                       450px;
+    height:                      550px;
+    x-offset:                    0px;
+    y-offset:                    0px;
+    enabled:                     true;
+    border-radius:               12px;
+    cursor:                      "default";
+    background-color:            @surface;
+}
+
+/*****----- Main Box -----*****/
+mainbox {
+    enabled:                     true;
+    spacing:                     0px;
+    background-color:            transparent;
+    orientation:                 vertical;
+    children:                    [ "inputbar", "listbox" ];
+}
+
+listbox {
+    spacing:                     15px;
+    padding:                     20px;
+    background-color:            @surface;
+    orientation:                 vertical;
+    children:                    [ "message", "listview" ];
+}
+
+/*****----- Inputbar -----*****/
+inputbar {
+    enabled:                     true;
+    spacing:                     15px;
+    padding:                     30px 30px;
+    background-color:            @surface-container;
+    background-image:            @wallpaper;
+    text-color:                  @on-surface;
+    orientation:                 horizontal;
+    children:                    [ "textbox-prompt-colon", "dummy"];
+}
+
+textbox-prompt-colon {
+    enabled:                     true;
+    expand:                      false;
+    str:                         "Select Option";
+    padding:                     12px 18px;
+    border:                      0px;
+    border-radius:               8px;
+    background-color:            @primary;
+    text-color:                  @on-primary;
+    font:                        "JetBrains Mono Nerd Font Bold 10";
+}
+
+entry {
+    enabled:                     false;
+}
+
+dummy {
+    expand:                      true;
+    background-color:            transparent;
+}
+
+/*****----- Listview -----*****/
+listview {
+    enabled:                     true;
+    columns:                     1;
+    lines:                       6;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                false;
+    fixed-columns:               true;
+    spacing:                     8px;
+    background-color:            transparent;
+    text-color:                  @on-surface;
+    cursor:                      "default";
+}
+
+/*****----- Elements -----*****/
+element {
+    enabled:                     true;
+    spacing:                     15px;
+    padding:                     16px 20px;
+    border:                      2px solid;
+    border-radius:               10px;
+    border-color:                transparent;
+    background-color:            @surface-container;
+    text-color:                  @on-surface;
+    cursor:                      pointer;
+}
+
+element normal.normal {
+    background-color:            @surface-container;
+    text-color:                  @on-surface;
+    border-color:                transparent;
+}
+
+element selected.normal {
+    background-color:            @primary-container;
+    text-color:                  @on-primary-container;
+    border-color:                @primary;
+}
+
+element alternate.normal {
+    background-color:            @surface-container-low;
+    text-color:                  @on-surface;
+    border-color:                transparent;
+}
+
+element-text {
+    background-color:            transparent;
+    text-color:                  inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+    font:                        "JetBrains Mono Nerd Font 10";
+}
+
+element-text selected {
+    text-color:                  @on-primary-container;
+    font:                        "JetBrains Mono Nerd Font Bold 10";
+}
+
+/*****----- Message -----*****/
+message {
+    background-color:            transparent;
+    margin:                      0px 0px 10px 0px;
+}
+
+textbox {
+    padding:                     14px;
+    border:                      0px;
+    border-radius:               8px;
+    background-color:            @secondary-container;
+    text-color:                  @on-secondary-container;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+    font:                        "JetBrains Mono Nerd Font 10";
+}
+
+error-message {
+    padding:                     15px;
+    border:                      0px;
+    border-radius:               8px;
+    background-color:            @error-container;
+    text-color:                  @on-error-container;
+}

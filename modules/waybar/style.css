@@ -1,0 +1,294 @@
+@import "theme.css";
+
+/* HyprDots-04 Layout - HyDE style with matugen colors */
+
+* {
+    min-height: 15px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    text-shadow: none;
+    font-size: 10.5px;
+    font-weight: 700;
+    font-family: "JetBrainsMono Nerd Font Propo";
+}
+
+window#waybar {
+    background: none;
+}
+
+.module {
+    color: @on_surface;
+}
+
+/* Pill/Group styling */
+#pill {
+    background-color: @surface_container;
+    border-width: 1px;
+    border-style: solid;
+    border-color: @tertiary_container;
+    border-radius: 18px;
+    padding: 1px 10px;
+    margin: 0px 0px;
+}
+
+#pill.left1 {margin-right: 3px;}
+#pill.right3, #pill.right2 {margin-left: 3px;}
+
+/* Modules spacing */
+window#waybar.top label.module,
+window#waybar.bottom label.module {
+    padding-left: 4px;
+    padding-right: 4px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+window#waybar.top .modules-left,
+window#waybar.top .modules-center,
+window#waybar.top .modules-right,
+window#waybar.bottom .modules-left,
+window#waybar.bottom .modules-center,
+window#waybar.bottom .modules-right {
+    padding: 0px 1px;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+/* Workspaces */
+#workspaces {
+    padding: 0px;
+    margin: 0 10px 0 0;
+}
+
+#workspaces button {
+    box-shadow: none;
+    text-shadow: none;
+    padding: 1px 3px;
+    margin-left: 0px;
+    margin-right: 0px;
+    color: @on_surface_variant;
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(.55, -0.68, .48, 1.682);
+}
+
+#workspaces button.active {
+    background: @primary;
+    color: @on_primary;
+    padding: 1px 12px;
+    margin-left: 3px;
+    margin-right: 3px;
+    border: 1px solid @primary;
+    transition: all 0.4s cubic-bezier(.55, -0.68, .48, 1.682);
+}
+
+#workspaces button:hover {
+    background: @surface_container_high;
+    color: @on_surface;
+    transition: all 0.3s cubic-bezier(.55, -0.68, .48, 1.682);
+}
+
+#workspaces button.urgent {
+    background: @error_container;
+    color: @on_error;
+    border: 1px solid @error;
+}
+
+/* Window title */
+#window {
+    color: @on_surface;
+    font-weight: 600;
+}
+
+/* CPU & Memory */
+#cpu {
+    color: @secondary;
+}
+
+#memory {
+    color: @tertiary;
+}
+
+/* Clock */
+#clock {
+    color: @primary;
+    font-weight: 600;
+}
+
+/* Idle inhibitor */
+#idle_inhibitor {
+    color: @on_surface_variant;
+    margin: 4px 0;
+}
+
+#idle_inhibitor.activated {
+    color: @primary;
+    background: @primary_container;
+    border-radius: 50px;
+}
+
+/* Backlight */
+#backlight {
+    color: @tertiary;
+}
+
+/* Network */
+#network {
+    color: @secondary;
+}
+
+#network.disconnected {
+    color: @error;
+}
+
+/* Audio */
+#pulseaudio {
+    color: @tertiary;
+}
+
+#pulseaudio.muted {
+    color: @on_error_container;
+}
+
+#pulseaudio\#microphone {
+    color: @secondary;
+}
+
+#pulseaudio\#microphone.muted {
+    color: @on_error_container;
+}
+
+/* Battery */
+#battery {
+    color: @on_surface;
+}
+
+#battery.charging {
+    color: @tertiary;
+}
+
+#battery.warning:not(.charging) {
+    color: @primary;
+}
+
+#battery.critical:not(.charging) {
+    color: @error;
+    animation: blink 1s ease-in-out infinite;
+}
+
+/* Privacy indicators */
+#privacy {
+    color: @primary;
+}
+
+#privacy-item {
+    color: @error;
+}
+
+/* Tray group and icon */
+#custom-trayicon {
+    color: @on_surface_variant;
+    padding: 0px;
+}
+
+/* Tray */
+#tray {
+    padding: 0 0px;
+}
+
+#tray > * {
+    padding: 0 3px;
+}
+
+#tray menu {
+    background: @surface_container;
+    color: @on_surface;
+    border: 1px solid @outline_variant;
+    border-radius: 12px;
+    padding: 8px;
+}
+
+#tray menu * {
+    min-height: 2em;
+}
+
+#tray menu separator {
+    min-height: 0.1em;
+}
+
+/* Custom modules */
+#custom-updates {
+    color: @primary;
+}
+
+#custom-keybindhint {
+    color: @tertiary;
+}
+
+#custom-wallchange,
+#custom-theme,
+#custom-wbar,
+#custom-cliphist,
+#custom-hyde-menu {
+    color: @on_surface_variant;
+}
+
+#custom-power {
+    color: @error;
+    font-size: 12px;
+}
+
+#custom-notify {
+    color: @primary;
+    padding: 0 8px;
+}
+
+/* Tooltips */
+tooltip {
+    background: @surface_container_highest;
+    color: @on_surface;
+    border-width: 1px;
+    border-color: @outline_variant;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+/* Animations */
+@keyframes blink {
+from {
+    opacity: 1;
+}
+50% {
+    opacity: 0.5;
+}
+to {
+    opacity: 1;
+}
+}
+
+/* Temperature */
+#temperature,
+#temperature.warning,
+#temperature.critical {
+    background-color: transparent;
+    color: @tertiary;
+}
+
+#temperature.critical {
+    color: @error;
+}
+
+/* Language */
+#language {
+    min-width: 1.11em;
+    color: @on_surface_variant;
+}
+
+/* Buttons */
+window#waybar.top button,
+window#waybar.bottom button {
+    margin: 0.41em 0.11em;
+    border: 0em;
+}

@@ -1,0 +1,67 @@
+* {
+    font: "JetBrainsMono Nerd Font 10";
+    wallpaper: url("~/.config/themes/wall-cropped.png", width);
+
+    primary: #c6c5d6;
+    primary-fixed: #e2e1f3;
+    primary-fixed-dim: #c6c5d6;
+    on-primary: #2e2f3d;
+    on-primary-fixed: #191b27;
+    on-primary-fixed-variant: #454654;
+    primary-container: #454654;
+    on-primary-container: #e2e1f3;
+    secondary: #c7c5d0;
+    secondary-fixed: #e3e1ec;
+    secondary-fixed-dim: #c7c5d0;
+    on-secondary: #2f3038;
+    on-secondary-fixed: #1a1b23;
+    on-secondary-fixed-variant: #46464f;
+    secondary-container: #46464f;
+    on-secondary-container: #e3e1ec;
+    tertiary: #c4c5dd;
+    tertiary-fixed: #e0e0f9;
+    tertiary-fixed-dim: #c4c5dd;
+    on-tertiary: #2d2f42;
+    on-tertiary-fixed: #181a2c;
+    on-tertiary-fixed-variant: #444559;
+    tertiary-container: #444559;
+    on-tertiary-container: #e0e0f9;
+    error: #ffb4ab;
+    on-error: #690005;
+    error-container: #93000a;
+    on-error-container: #ffdad6;
+    surface: #131315;
+    on-surface: #e5e1e3;
+    on-surface-variant: #c9c6c7;
+    outline: #929092;
+    outline-variant: #474648;
+    shadow: #000000;
+    scrim: #000000;
+    inverse-surface: #e5e1e3;
+    inverse-on-surface: #313032;
+    inverse-primary: #5d5d6c;
+    surface-dim: #131315;
+    surface-bright: #3a393a;
+    surface-container-lowest: #0e0e0f;
+    surface-container-low: #1c1b1d;
+    surface-container: #201f21;
+    surface-container-high: #2a2a2b;
+    surface-container-highest: #353436;
+}
+
+/*****----- Color Definitions -----*****/
+* {
+    background:                  #282828;
+    background-alt:              #3c3836;
+    foreground:                  #ebdbb2;
+    selected-normal-background:  #d79921;
+    selected-normal-foreground:  #282828;
+    urgent-background:           #cc241d;
+    urgent-foreground:           #ebdbb2;
+    normal-background:           #458588;
+    normal-foreground:           #ebdbb2;
+    selected-urgent-background:  #fb4934;
+    selected-urgent-foreground:  #282828;
+    selected-active-background:  #83a598;
+    selected-active-foreground:  #282828;
+}
