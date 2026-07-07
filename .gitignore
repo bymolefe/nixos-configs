@@ -1,4 +1,4 @@
 # hardware-configuration.nix
 lazy-lock.json
-bundle/
+/bundle
 *.zip
