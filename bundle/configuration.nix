@@ -53,7 +53,20 @@
   };
 
   nixpkgs.config.allowUnfree = true;
- 
+
+  # NOTE: `programs.hyprland` moved out to ./hyprland-system.nix.
+  # It's still a system-level module (still listed in flake.nix's
+  # top-level `modules`), just no longer inline here — kept separate so
+  # it's clearly distinguished from the home-manager-level Hyprland
+  # *config* in home/hyprland.nix.
+
+  # NOTE: `programs.bash` moved to home/bash.nix (home-manager level).
+  # Since this machine has a single user (soul) and the goal is
+  # personal, per-user shell config rather than a machine-wide default,
+  # it now lives alongside your other per-program home-manager files.
+  # See the corrections/reasoning log for the system-vs-home-manager
+  # trade-off this was based on.
+
   security.polkit.enable = true;
   
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
@@ -69,6 +82,17 @@
   };
 
   xdg.portal.enable = true;
+
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    para = " /mnt/data/side_a";
+    soul = " /mnt/data/side_b";
+    dev= " $area/playground";
+    project = "$para/project";
+    area = "$para/area";
+    resource = "$para/resource";
+    archive = "$para/archive";
+  };
 
   environment.systemPackages = with pkgs; [
     direnv
@@ -136,4 +160,3 @@
  
   system.stateVersion = "26.05"; 
 }
-

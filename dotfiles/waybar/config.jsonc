@@ -1,14 +1,15 @@
 // HyprDots-04 Layout - Simplified for custom setup
 {
     "layer": "top",
+    "position": "bottom",
     "output": ["*"],
     "height": 10,
     "exclusive": true,
     "passthrough": false,
     "reload_style_on_change": true,
 
-    "margin-top": 7,
-    "margin-bottom": 0,
+    "margin-top": 0,
+    "margin-bottom": 5,
 
     "modules-left": [
         "group/pill#left1",

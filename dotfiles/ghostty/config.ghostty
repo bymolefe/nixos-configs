@@ -1,0 +1,13 @@
+config-file = colors.conf
+
+font-family = JetBrainsMono Nerd Font Mono
+font-size = 9
+
+window-padding-x = 9
+window-padding-y = 9
+
+cursor-style = underline
+
+confirm-close-surface = false
+
+keybind = cmd+shift+enter=toggle_quick_terminal
