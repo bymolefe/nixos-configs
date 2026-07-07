@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hosts/ad-astra/hardware-configuration.nix
     ];
 
@@ -10,7 +10,6 @@
   boot.loader.grub.devices = [ "nodev" ];
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.hostName = "ad-astra"; 
@@ -33,29 +32,10 @@
     pulse.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
-
-  users.users.soul = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "libvirtd" ]; 
-    packages = with pkgs; [
-      cmatrix
-      fastfetch
-      tree
-      bat
-      btop
-      # screenshot utilities
-      hyprshot
-      satty
-      wl-clipboard
-    ];
-  };
-
   nixpkgs.config.allowUnfree = true;
- 
+
   security.polkit.enable = true;
-  
+
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";
     wantedBy = [ "graphical-session.target" ];
@@ -70,26 +50,52 @@
 
   xdg.portal.enable = true;
 
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    para = " /mnt/data/side_a";
+    soul = " /mnt/data/side_b";
+    dev= " $area/playground";
+    project = "$para/project";
+    area = "$para/area";
+    resource = "$para/resource";
+    archive = "$para/archive";
+  };
+
+  users.users.soul = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "libvirtd" ]; 
+    packages = with pkgs; [
+      neovim
+      cmatrix
+      fastfetch
+      ghostty
+      hyprlock
+      rofi
+      mpv
+    ];
+  };
+
   environment.systemPackages = with pkgs; [
+    tree
+    bat
+    btop
+    hyprshot
+    wl-clipboard
+    satty
     direnv
-    mpv
     nwg-look
     brightnessctl
-    neovim
     zip
     unzip
     brave
     vscodium
     awww
-    hyprlock
     wget
     spotify
-    ghostty
     nautilus
     git
     wget
     papirus-icon-theme
-    rofi
     proton-vpn
     capitaine-cursors
     dnsmasq
@@ -136,4 +142,3 @@
  
   system.stateVersion = "26.05"; 
 }
-

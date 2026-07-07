@@ -1,9 +1,7 @@
-{ pkgs, ... }:
+{ ... }:
 {
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    withUWSM = true;
+  xdg.configFile."hypr" = {
+    source = ../dotfiles/hypr;
+    recursive = true;
   };
 }
-
