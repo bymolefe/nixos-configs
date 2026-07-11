@@ -15,6 +15,7 @@
   networking.hostName = "ad-astra"; 
 
   networking.networkmanager.enable = true;
+  programs.nm-applet.enable = true;
   networking.networkmanager.plugins = with pkgs; [
     networkmanager-openvpn
   ];
@@ -76,29 +77,28 @@
   };
 
   environment.systemPackages = with pkgs; [
+    git
+    unzip
+    zip
+    awww
+    wget
+    satty
+    dnsmasq
+    direnv
+    wl-clipboard
+    brightnessctl
+    brave
+    vscodium
+    proton-vpn
+    spotify
+    hyprshot
+    nautilus
+    nwg-look
     tree
     bat
     btop
-    hyprshot
-    wl-clipboard
-    satty
-    direnv
-    nwg-look
-    brightnessctl
-    zip
-    unzip
-    brave
-    vscodium
-    awww
-    wget
-    spotify
-    nautilus
-    git
-    wget
     papirus-icon-theme
-    proton-vpn
     capitaine-cursors
-    dnsmasq
   ];
 
   fonts.packages = with pkgs; [

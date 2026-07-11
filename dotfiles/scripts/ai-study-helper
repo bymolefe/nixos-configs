@@ -1,0 +1,156 @@
+#!/usr/bin/env bash
+# AI Study Helper - Explain highlighted text using Google Gemini
+# Wrapper script for Wayland integration
+#
+# Modes:
+#   (default)  - Use PRIMARY selection as query, CLIPBOARD as context
+#   --ocr      - Select screen region and extract text via OCR
+#   --history  - Browse past queries (passed to Python script)
+#
+# Smart context extraction:
+# - PRIMARY selection (highlight) = the term to explain
+# - CLIPBOARD (Ctrl+C) = the surrounding context
+#
+# Workflow: First Ctrl+C the paragraph, then highlight the term, then press keybind
+
+set -e
+
+source "$HOME/.local/scripts/utils/log"
+
+# Lockfile to prevent concurrent runs
+lockfile="/tmp/ai-study-helper.lock"
+
+if [ -e "$lockfile" ]; then
+    log "AI Study Helper" "Already running"
+    exit 0
+fi
+
+# Create lockfile and ensure cleanup
+touch "$lockfile"
+trap "rm -f $lockfile" EXIT
+
+python_script="$HOME/.local/scripts/ai-study-helper.py"
+
+if [[ ! -f "$python_script" ]]; then
+    log "AI Study Helper" "Error: Python script not found at $python_script"
+    exit 1
+fi
+
+# Handle special modes
+if [[ "$1" == "--history" ]]; then
+    "$python_script" --history
+    exit $?
+fi
+
+if [[ "$1" == "--ocr" ]]; then
+    # OCR Mode: Select region, extract text, explain
+
+    # Check for required tools
+    if ! command -v tesseract &>/dev/null; then
+        log "AI Study Helper" "OCR requires tesseract. Install with: sudo pacman -S tesseract tesseract-data-eng"
+        exit 1
+    fi
+
+    if ! command -v slurp &>/dev/null || ! command -v grim &>/dev/null; then
+        log "AI Study Helper" "OCR requires slurp and grim for screen capture"
+        exit 1
+    fi
+
+    log "AI Study Helper" "Select a region to capture text..."
+
+    # Capture region selection
+    region=$(slurp 2>/dev/null) || exit 0
+
+    # Create temp file for screenshot
+    tmpimg=$(mktemp /tmp/ai-ocr-XXXXXX.png)
+    trap "rm -f $lockfile $tmpimg" EXIT
+
+    # Capture the region
+    grim -g "$region" "$tmpimg"
+
+    # Extract text with tesseract
+    query=$(tesseract "$tmpimg" - 2>/dev/null | tr '\n' ' ' | sed 's/  */ /g' | xargs)
+
+    if [[ -z "$query" ]]; then
+        log "AI Study Helper" "No text detected in selected region"
+        exit 0
+    fi
+
+    log "AI Study Helper" "Extracted: ${query:0:50}..."
+
+    # Pass to Python script
+    "$python_script" "$query"
+    exit $?
+fi
+
+# Default mode: Use clipboard/selection
+query=""
+context=""
+
+# Get highlighted text (primary selection) - this is the term to explain
+selection=$(wl-paste --primary 2>/dev/null || echo "")
+
+# Get clipboard content (Ctrl+C) - this is the context paragraph
+clipboard=$(wl-paste 2>/dev/null || echo "")
+
+if [[ -n "$selection" ]]; then
+    # We have a selection - use it as the query
+    query="$selection"
+
+    # If clipboard is different and not too long, use it as context
+    if [[ -n "$clipboard" ]] && [[ "$selection" != "$clipboard" ]] && [[ ${#clipboard} -le 5000 ]]; then
+        context="$clipboard"
+    fi
+elif [[ -n "$clipboard" ]] && [[ ${#clipboard} -le 500 ]]; then
+    # No selection but short clipboard content - use clipboard as query
+    query="$clipboard"
+fi
+
+# If still no query, prompt user
+if [[ -z "$query" ]] || [[ ${#query} -gt 10000 ]]; then
+    if [[ ${#query} -gt 10000 ]]; then
+        log "AI Study Helper" "Selection too large, please enter text manually"
+    fi
+
+    query=$(rofi -dmenu -p "Enter text to explain" \
+           -mesg "Highlight text first, or type/paste here" \
+           -config ~/.config/rofi/simple.rasi \
+           -theme-str 'entry { placeholder: "What do you want explained?"; }') || exit 0
+
+    # Check if user cancelled or entered nothing
+    if [[ -z "$query" ]]; then
+        exit 0
+    fi
+fi
+
+# Run the Python script and handle exit codes
+# Pass context as second argument if available
+if [[ -n "$context" ]]; then
+    "$python_script" "$query" "$context"
+else
+    "$python_script" "$query"
+fi
+exit_code=$?
+
+case $exit_code in
+    0)
+        # Success - no notification needed (Python script already shows result)
+        ;;
+    1)
+        log "AI Study Helper" "Please set up your Google Gemini API key"
+        ;;
+    2)
+        log "AI Study Helper" "Network or API error. Please try again"
+        ;;
+    3)
+        # User cancelled - silent exit
+        ;;
+    4)
+        log "AI Study Helper" "Invalid input. Please select text and try again"
+        ;;
+    *)
+        log "AI Study Helper" "Unknown error occurred"
+        ;;
+esac
+
+exit $exit_code

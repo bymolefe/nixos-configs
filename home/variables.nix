@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  environment.sessionVariables = {
+  home.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     para = " /mnt/data/side_a";
     soul = " /mnt/data/side_b";
