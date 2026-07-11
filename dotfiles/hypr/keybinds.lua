@@ -39,9 +39,9 @@ hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd(screenshot .. " window"))  -- cap
 hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("hyprpicker -an"))   -- Pick color (Hex) >> clipboard
 
 -- AI Helper Tool
-hl.bind(mainMod .. " + SHIFT + I", hl.dsp.exec_cmd("~/.local/scripts/ai-study-helper")) -- Explain highlighted text with AI
-hl.bind(mainMod .. " + ALT + I", hl.dsp.exec_cmd("~/.local/scripts/ai-study-helper --history")) -- Browse Ai explanation history
-hl.bind(mainMod .. " + CONTROL + I", hl.dsp.exec_cmd("~/.local/scripts/ai-study-helper --ocr")) -- OCR: Select region and explain text
+hl.bind(mainMod .. " + SHIFT + I", hl.dsp.exec_cmd("~/.local/scripts/ai-study-helper.sh")) -- Explain highlighted text with AI
+hl.bind(mainMod .. " + ALT + I", hl.dsp.exec_cmd("~/.local/scripts/ai-study-helper.sh --history")) -- Browse Ai explanation history
+hl.bind(mainMod .. " + CONTROL + I", hl.dsp.exec_cmd("~/.local/scripts/ai-study-helper.sh --ocr")) -- OCR: Select region and explain text
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]

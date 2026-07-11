@@ -87,18 +87,19 @@
     direnv
     wl-clipboard
     brightnessctl
+    hyprshot
+    dunst
+    libnotify
     brave
     vscodium
     proton-vpn
     spotify
-    hyprshot
     nautilus
     nwg-look
     tree
     bat
     btop
     papirus-icon-theme
-    capitaine-cursors
   ];
 
   fonts.packages = with pkgs; [
@@ -121,15 +122,6 @@
   };
 
   programs.dconf.enable = true;
-
-  systemd.user.services.cursor-theme-fix = {
-    description = "Force cursor theme for GNOME/GTK apps";
-    wantedBy = [ "graphical-session.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.gsettings-desktop-schemas}/bin/gsettings set org.gnome.desktop.interface cursor-theme 'Capitaine Cursors'";
-    };
-  };
 
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
