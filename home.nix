@@ -12,6 +12,7 @@
       ./home/kitty.nix
       ./home/mpv.nix
       ./home/nvim.nix
+      ./home/tmux.nix
       #./home/rofi.nix
       #./home/waybar.nix
       ./home/scripts.nix

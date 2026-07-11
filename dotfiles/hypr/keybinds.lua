@@ -2,7 +2,7 @@
 -- Set programs that you use
 local terminal    = "ghostty"
 local codeEditor  = "codium"
-local fileManager = "nautilus"
+local fileManager = "thunar"
 local browser     = "brave"
 local browser_incognito  = "brave --incognito"
 local screenshot  = "~/.local/scripts/screenshot.sh"

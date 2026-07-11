@@ -73,6 +73,7 @@
       hyprlock
       rofi
       mpv
+      tmux
     ];
   };
 
@@ -94,7 +95,7 @@
     vscodium
     proton-vpn
     spotify
-    nautilus
+    thunar
     nwg-look
     tree
     bat
