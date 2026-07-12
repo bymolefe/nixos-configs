@@ -7,6 +7,7 @@
   home-manager.users.soul = {
     imports = [
       ./home/bash.nix
+      ./home/ghostty.nix
       ./home/variables.nix
       ./home/hyprland.nix
       ./home/kitty.nix

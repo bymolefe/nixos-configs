@@ -1,111 +1,109 @@
 hl.config({
-  general = {
-    gaps_in  = 2,
-    gaps_out = 3,
+    general = {
+        gaps_in          = 1,
+        gaps_out         = 3,
 
-    border_size = 2,
+        border_size      = 2,
 
-    col = {
-      active_border   = { colors = {"rgba(33ccffee)", "rgba(00ff99ee)"}, angle = 45 },
-      inactive_border = "rgba(595959aa)",
+        col              = {
+            active_border   = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 },
+            inactive_border = "rgba(595959aa)",
+        },
+
+        resize_on_border = false,
+
+        allow_tearing    = false,
+
+        layout           = "master",
     },
 
-    resize_on_border = false,
+    decoration = {
+        rounding         = 10,
+        rounding_power   = 0,
 
-    allow_tearing = false,
+        active_opacity   = 0.95,
+        inactive_opacity = 0.9,
 
-    layout = "master",
-  },
+        shadow           = {
+            enabled      = true,
+            range        = 4,
+            render_power = 3,
+            color        = 0xee1a1a1a,
+        },
 
-  decoration = {
-    rounding       = 10,
-    rounding_power = 0,
-
-    active_opacity   = 0.95,
-    inactive_opacity = 0.9,
-
-    shadow = {
-      enabled      = true,
-      range        = 4,
-      render_power = 3,
-      color        = 0xee1a1a1a,
+        blur             = {
+            enabled           = true,
+            size              = 6,
+            passes            = 5,
+            vibrancy          = 0.1696,
+            new_optimizations = true,
+            ignore_opacity    = true,
+            special           = true,
+            popups            = true,
+            xray              = false,
+        },
     },
 
-    blur = {
-      enabled   = true,
-      size      = 6,
-      passes    = 5,
-      vibrancy  = 0.1696,
-      new_optimizations = true,
-      ignore_opacity = true,
-      special = true,
-      popups = true,
-      xray = false,
+    animations = {
+        enabled = true,
     },
-  },
-
-  animations = {
-    enabled = true,
-  },
 })
 
 hl.config({
-  dwindle = {
-    preserve_split = true, -- You probably want this
-  },
-})
-
-hl.config({
-  master = {
-    mfact = 0.60,
-    orientation = "left",
-    smart_resizing = true,
-    new_status = "master",
-  },
-})
-
-hl.config({
-  scrolling = {
-    fullscreen_on_one_column = true,
-  },
-})
-
-
-hl.config({
-  misc = {
-    force_default_wallpaper = -1,    -- Set to 0 or 1 to disable the anime mascot wallpapers
-    disable_hyprland_logo   = true, -- If true disables the random hyprland logo / anime girl background. :(
+    dwindle = {
+        preserve_split = true, -- You probably want this
     },
-  })
+})
+
+hl.config({
+    master = {
+        mfact = 0.60,
+        orientation = "left",
+        smart_resizing = true,
+        new_status = "master",
+    },
+})
+
+hl.config({
+    scrolling = {
+        fullscreen_on_one_column = true,
+    },
+})
 
 
-  hl.config({
+hl.config({
+    misc = {
+        force_default_wallpaper = -1, -- Set to 0 or 1 to disable the anime mascot wallpapers
+        disable_hyprland_logo   = true, -- If true disables the random hyprland logo / anime girl background. :(
+    },
+})
+
+
+hl.config({
     input = {
-      kb_layout  = "us",
-      kb_variant = "",
-      kb_model   = "",
-      kb_options = "",
-      kb_rules   = "",
+        kb_layout    = "us",
+        kb_variant   = "",
+        kb_model     = "",
+        kb_options   = "",
+        kb_rules     = "",
 
-      follow_mouse = 1,
+        follow_mouse = 1,
 
-      sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
+        sensitivity  = 0, -- -1.0 - 1.0, 0 means no modification.
 
-      touchpad = {
-        natural_scroll = false,
-      },
+        touchpad     = {
+            natural_scroll = false,
+        },
     },
-  })
+})
 
-  hl.gesture({
+hl.gesture({
     fingers = 3,
     direction = "horizontal",
     action = "workspace"
-  })
+})
 
-  hl.device({
+hl.device({
     name        = "epic-mouse-v1",
     sensitivity = -0.5,
-  })
-
-
+})

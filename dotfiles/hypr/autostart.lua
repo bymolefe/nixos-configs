@@ -4,6 +4,7 @@
 -- Or execute your favorite apps at launch like this:
 
 hl.on("hyprland.start", function()
-  hl.exec_cmd("awww-daemon")
-  hl.exec_cmd("awww img ~/Pictures/wall.png")
+    hl.exec_cmd("ghostty")
+    hl.exec_cmd("awww-daemon")
+    hl.exec_cmd("awww img ~/Pictures/wall.png")
 end)

@@ -9,5 +9,6 @@ window-padding-y = 9
 cursor-style = underline
 
 confirm-close-surface = false
+quit-after-last-window-closed = false
 
 keybind = cmd+shift+enter=toggle_quick_terminal
