@@ -26,7 +26,7 @@
 
   services.displayManager.ly.enable = true;
 
-  services.printing.enable = true;
+  # services.printing.enable = true;
 
   services.pipewire = {
     enable = true;
@@ -78,6 +78,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    claude-code
     git
     unzip
     zip
@@ -85,7 +86,6 @@
     wget
     satty
     dnsmasq
-    direnv
     wl-clipboard
     brightnessctl
     hyprshot
@@ -107,7 +107,7 @@
     nerd-fonts.jetbrains-mono
   ];
 
-  networking.firewall.enable = false;
+  networking.firewall.enable = true;
   networking.firewall.trustedInterfaces = [ "virbr0" ];
   networking.firewall.checkReversePath = false;
 
@@ -115,11 +115,6 @@
     automatic = true;
     dates = "19:00";
     options = "--delete-older-than 3d";
-  };
-
-  environment.variables = {
-    XCURSOR_THEME = "Capitaine Cursors";
-    XCURSOR_SIZE = "24";
   };
 
   programs.dconf.enable = true;

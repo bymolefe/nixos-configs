@@ -1,9 +1,16 @@
 { pkgs, ... }: {
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
   programs.bash = {
     enable = true;
     initExtra = ''
       export PROMPT_DIRTRIM=2
       export EDITOR="codium"
+      community=github:the-nix-way/dev-templates
+      official=github:NixOS/templates
 
       __git_status_ps1() {
         local branch ahead behind staged modified untracked stashed conflicts

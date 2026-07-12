@@ -1,7 +1,7 @@
 hl.config({
   general = {
     gaps_in  = 2,
-    gaps_out = 2,
+    gaps_out = 3,
 
     border_size = 2,
 
@@ -14,7 +14,7 @@ hl.config({
 
     allow_tearing = false,
 
-    layout = "dwindle",
+    layout = "master",
   },
 
   decoration = {
@@ -57,6 +57,9 @@ hl.config({
 
 hl.config({
   master = {
+    mfact = 0.60,
+    orientation = "left",
+    smart_resizing = true,
     new_status = "master",
   },
 })
