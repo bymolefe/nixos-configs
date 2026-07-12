@@ -71,6 +71,7 @@
     shellAliases = {
       code = "codium";
       ls = "ls -l --color=auto";
+      rebuild = "nixos-rebuild";
     };
   };
 }

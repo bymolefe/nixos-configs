@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 {
   imports =
     [
@@ -15,7 +15,6 @@
   networking.hostName = "ad-astra"; 
 
   networking.networkmanager.enable = true;
-  programs.nm-applet.enable = true;
   networking.networkmanager.plugins = with pkgs; [
     networkmanager-openvpn
   ];
@@ -25,7 +24,14 @@
   time.timeZone = "Africa/Maseru";
 
   services.displayManager.ly.enable = true;
-
+  services.postgresql.enable = true;
+  services.pgadmin = {
+    enable = true;
+    # CHANGE THIS TO YOUR EMAIL
+    initialEmail = "you@example.com";
+    # CREATE FILE WITH TIGHT PERMISSIONS (600) AND PLACE PASSWORD IN THERE
+    initialPasswordFile = "/etc/pgadmin/pgadmin-password";
+  };
   # services.printing.enable = true;
 
   services.pipewire = {
@@ -78,6 +84,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     claude-code
     git
     unzip
@@ -91,7 +98,6 @@
     hyprshot
     dunst
     libnotify
-    brave
     vscodium
     proton-vpn
     spotify
