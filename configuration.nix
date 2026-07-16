@@ -15,6 +15,7 @@
   networking.hostName = "ad-astra"; 
 
   networking.networkmanager.enable = true;
+  programs.nm-applet.enable = true;
   networking.networkmanager.plugins = with pkgs; [
     networkmanager-openvpn
   ];
