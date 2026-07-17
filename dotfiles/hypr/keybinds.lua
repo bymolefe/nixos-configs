@@ -2,13 +2,13 @@
 local terminal          = "ghostty"
 local codeEditor        = "codium"
 local fileManager       = "thunar"
-local browser           = "zen-browser"
-local browser_incognito = "zen-browser --private-window"
+local browser           = "zen"
+local browser_incognito = "zen --private-window"
 local screenshot        = "~/.local/scripts/screenshot.sh"
 
 
 local menu    = "rofi -show drun"
-local mainMod = "SUPER"     -- Sets "Windows" key as main modifier
+local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + return", hl.dsp.exec_cmd(terminal))

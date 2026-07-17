@@ -74,7 +74,7 @@
     extraGroups = [ "wheel" "libvirtd" ]; 
     packages = with pkgs; [
       neovim
-      cmatrix
+      unimatrix
       fastfetch
       ghostty
       hyprlock

@@ -8,7 +8,8 @@
     enable = true;
     initExtra = ''
       export PROMPT_DIRTRIM=2
-      export EDITOR="codium"
+      export EDITOR="nvim"
+      export VISUAL="nvim"
       community=github:the-nix-way/dev-templates
       official=github:NixOS/templates
 
@@ -69,6 +70,8 @@
       PROMPT_COMMAND="__set_ps1''${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
     '';
     shellAliases = {
+      cc = "claude";
+      ff = "fastfetch";
       code = "codium";
       ls = "ls -l --color=auto";
       rebuild = "nixos-rebuild";

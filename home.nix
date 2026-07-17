@@ -17,6 +17,9 @@
       #./home/rofi.nix
       #./home/waybar.nix
       ./home/scripts.nix
+      ./home/theme.nix
+      ./home/fastfetch.nix
+      ./home/editor.nix
     ];
 
     home.stateVersion = "26.05";
