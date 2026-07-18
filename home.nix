@@ -16,6 +16,7 @@
       ./home/tmux.nix
       #./home/rofi.nix
       #./home/waybar.nix
+      ./home/zsh.nix
       ./home/scripts.nix
       ./home/theme.nix
       ./home/fastfetch.nix

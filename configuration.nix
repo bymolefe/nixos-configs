@@ -44,6 +44,18 @@
 
   security.polkit.enable = true;
 
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.ly.enableGnomeKeyring = true;
+
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+      if (action.id.indexOf("org.freedesktop.NetworkManager.") === 0 &&
+          subject.user === "soul") {
+        return polkit.Result.YES;
+      }
+    });
+  '';
+
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";
     wantedBy = [ "graphical-session.target" ];
@@ -71,6 +83,7 @@
 
   users.users.soul = {
     isNormalUser = true;
+    shell = pkgs.zsh;
     extraGroups = [ "wheel" "libvirtd" ]; 
     packages = with pkgs; [
       neovim
@@ -124,6 +137,7 @@
     options = "--delete-older-than 3d";
   };
 
+  programs.zsh.enable = true;
   programs.dconf.enable = true;
 
   virtualisation.libvirtd.enable = true;
