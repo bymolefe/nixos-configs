@@ -23,6 +23,8 @@
       ./home/editor.nix
     ];
 
+    home.file."templates".source = ./dotfiles/templates;
+
     home.stateVersion = "26.05";
   };
 }

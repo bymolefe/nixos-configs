@@ -6,6 +6,8 @@
     lua-language-server
     gcc
     tree-sitter
+    yazi
+    nixd
   ];
 
   xdg.configFile."nvim" = {

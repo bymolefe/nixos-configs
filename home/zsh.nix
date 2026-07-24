@@ -7,7 +7,13 @@
       ff = "fastfetch";
       code = "codium";
       ls = "ls -l --color=auto";
-      rebuild = "nixos-rebuild";
+      rebuild = "sudo nixos-rebuild";
+      tp = "tmux new-session -s \"$(basename $(pwd))\"";
+      tl = "tmux list-sessions";
+      ta = "tmux attach-session -t";
+      tn = "tmux new-session -s";
+      tk = "tmux kill-session -t";
+      ts = "tmux switch-client -t";
     };
     initContent = ''
       export EDITOR="nvim"

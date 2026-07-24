@@ -1,7 +1,9 @@
+local opacity = 0.8
+
 hl.config({
     general = {
-        gaps_in          = 1,
-        gaps_out         = 2,
+        gaps_in          = 2,
+        gaps_out         = 4,
 
         border_size      = 2,
 
@@ -14,15 +16,15 @@ hl.config({
 
         allow_tearing    = false,
 
-        layout           = "master",
+        layout           = "dwindle",
     },
 
     decoration = {
         rounding         = 10,
         rounding_power   = 0,
 
-        active_opacity   = 0.85,
-        inactive_opacity = 0.8,
+        active_opacity   = opacity,
+        inactive_opacity = opacity - 0.08,
 
         shadow           = {
             enabled      = true,
@@ -34,7 +36,7 @@ hl.config({
         blur             = {
             enabled           = true,
             size              = 6,
-            passes            = 5,
+            passes            = 2,
             vibrancy          = 0.1696,
             new_optimizations = true,
             ignore_opacity    = true,
@@ -57,7 +59,7 @@ hl.config({
 
 hl.config({
     master = {
-        mfact = 0.60,
+        mfact = 0.55,
         orientation = "left",
         smart_resizing = true,
         new_status = "master",
@@ -73,7 +75,7 @@ hl.config({
 
 hl.config({
     misc = {
-        force_default_wallpaper = -1, -- Set to 0 or 1 to disable the anime mascot wallpapers
+        force_default_wallpaper = -1,   -- Set to 0 or 1 to disable the anime mascot wallpapers
         disable_hyprland_logo   = true, -- If true disables the random hyprland logo / anime girl background. :(
     },
 })

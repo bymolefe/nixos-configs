@@ -8,8 +8,8 @@ return {
                 'lua', 'vim', 'vimdoc',
                 'javascript', 'typescript', 'tsx',
                 'html', 'css', 'json',
-                'php',
                 'bash',
+                'rust', 'c_sharp', 'java', 'python', 'nix',
             },
         })
 

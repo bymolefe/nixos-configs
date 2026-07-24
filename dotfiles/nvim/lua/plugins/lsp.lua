@@ -13,7 +13,7 @@ return {
         'rafamadriz/friendly-snippets',
     },
     config = function()
-        local autoformat_filetypes = { "lua" }
+        local autoformat_filetypes = { "lua", "nix", "cs", "java", "python", "rust", "typescript", "typescriptreact", "javascript", "javascriptreact" }
 
         vim.api.nvim_create_autocmd('LspAttach', {
             callback = function(args)
@@ -37,6 +37,7 @@ return {
         vim.api.nvim_create_autocmd('LspAttach', {
             callback = function(event)
                 local opts = { buffer = event.buf }
+                vim.bo[event.buf].formatexpr = 'v:lua.vim.lsp.formatexpr()'
                 vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
                 vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
                 vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
@@ -89,7 +90,25 @@ return {
             },
         })
 
-        vim.lsp.enable({ 'lua_ls' })
+        local dev_servers = {
+            csharp_ls     = { bin = 'csharp-ls',                  roots = { '*.csproj', '*.sln' } },
+            jdtls         = { bin = 'jdtls',                      roots = { 'pom.xml', 'build.gradle', 'build.gradle.kts' } },
+            pyright       = { bin = 'pyright',                    roots = { 'pyproject.toml', 'setup.py', 'requirements.txt' } },
+            rust_analyzer = { bin = 'rust-analyzer',              roots = { 'Cargo.toml' } },
+            ts_ls         = { bin = 'typescript-language-server', roots = { 'package.json', 'tsconfig.json' } },
+        }
+
+        for server, cfg in pairs(dev_servers) do
+            vim.lsp.config(server, {
+                root_dir = function(bufnr, on_dir)
+                    if vim.fn.executable(cfg.bin) == 1 then
+                        on_dir(vim.fs.root(bufnr, cfg.roots))
+                    end
+                end,
+            })
+        end
+
+        vim.lsp.enable({ 'lua_ls', 'nixd', 'csharp_ls', 'jdtls', 'pyright', 'rust_analyzer', 'ts_ls' })
 
         local cmp = require('cmp')
 
